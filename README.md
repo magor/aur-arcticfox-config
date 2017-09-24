@@ -1,0 +1,1 @@
+# aur-arcticfox-config
