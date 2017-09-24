@@ -1,0 +1,26 @@
+UDEVFILE="/etc/udev/rules.d/99-arcticfox.rules"
+GROUP="arcticfox"
+
+## arg 1:  the new package version
+post_install() {
+    # TODO create group and udev file
+#	echo "creating group $GROUP"
+#	groupadd $GROUP
+
+#	echo "creating $UDEVFILE"
+
+#	cat > $UDEVFILE << EOF
+#	# HIDAPI/libusb
+#	SUBSYSTEM=="usb", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", GROUP="$GROUP", MODE="0660"
+
+#	# HIDAPI/hidraw
+#	KERNEL=="hidraw*", ATTRS{busnum}=="1", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", GROUP="$GROUP", MODE="0660"
+#	EOF
+
+#	echo "to get access to the arcticfox device add your user to the group $GROUP"
+}
+
+## arg 1:  the old package version
+#post_remove() {
+	# do something here
+#}
