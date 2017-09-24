@@ -7,8 +7,9 @@
 # Other VCS sources are not natively supported by makepkg yet.
 
 # Maintainer: Your Name <youremail@domain.com>
-pkgname='arcticfox-config-git'
-#pkgver=1.11.5
+pkgname='arcticfox-config'
+#pkgname='arcticfox-config-git'
+pkgver=1.11.5
 pkgrel=1
 pkgdesc='Configuration Tool for Vape Battery Mods with Arcticfox Firmware.'
 arch=('any')
@@ -18,36 +19,32 @@ depends=()
 makedepends=('git' 'npm')
 options=()
 install=
-source=('FOLDER::VCS+URL#FRAGMENT')
+source=('git+https://github.com/hobbyquaker/arcticfox-config.git#tag=v1.11.5')
 noextract=()
 md5sums=('SKIP')
 
 # Please refer to the 'USING VCS SOURCES' section of the PKGBUILD man page for
 # a description of each element in the source array.
 
-pkgver() {
-	cd "$srcdir/${pkgname%-git}"
-	printf "%s" "$(git describe --long --tags | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
-}
-
-prepare() {
-	cd "$srcdir/${pkgname%-git}"
-	patch -p1 -i "$srcdir/${pkgname%-git}.patch"
-}
+#pkgver() {
+#	cd "$srcdir/${pkgname}"
+#	printf "%s" "$(git describe --long --tags | sed 's/^v//;s/\([^-]*-\)g/r\1/;s/-/./g')"
+#}
 
 build() {
-	cd "$srcdir/${pkgname%-git}"
+	cd "$srcdir/${pkgname}"
 	npm install
 	node_modules/.bin/electron-rebuild
 	npm run dist
 }
 
 check() {
-	cd "$srcdir/${pkgname%-git}"
+	cd "$srcdir/${pkgname}"
 	make -k check
 }
 
 package() {
-	cd "$srcdir/${pkgname%-git}"
-	make DESTDIR="$pkgdir/" install
+	cd "$srcdir/${pkgname}"
+#    install $pkgdir
+#	make DESTDIR="$pkgdir/" install
 }
