@@ -1,0 +1,21 @@
+# Maintainer: Miroslav Gajdoš <gajdos.mirek@gmail.com>
+pkgname='arcticfox-config-bin'
+pkgver=1.11.5
+pkgrel=1
+pkgdesc='Configuration Tool for Vape Battery Mods with Arcticfox Firmware.'
+arch=('any')
+url='https://github.com/hobbyquaker/arcticfox-config'
+license=('GPL')
+depends=()
+makedepends=()
+options=()
+install=
+source=("https://github.com/hobbyquaker/arcticfox-config/releases/download/v${pkgver}/arcticfox-config_${pkgver}_amd64.deb")
+noextract=()
+md5sums=('953e45fcdf3eafc2be98fb4a4dce796e')
+
+
+package() {
+	cd "$srcdir"
+	tar -xf data.tar.xz -C "${pkgdir}"
+}
